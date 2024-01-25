@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
     <style>
+        /* Styling for the cookie consent banner */
         #cookie-consent {
             position: fixed;
             bottom: 0;
@@ -17,23 +19,34 @@
         }
     </style>
 </head>
+
 <body>
+    <!-- Cookie consent banner with comments -->
     <div id="cookie-consent">
-        This website uses cookies and local storage. By using our site, you acknowledge that you have read and understand our Cookie and Local Storage Policy.
+        This website uses cookies and local storage. By using our site, you acknowledge that you have read and
+        understand our Cookie and Local Storage Policy.
         <button onclick="acceptCookies()">Accept</button>
     </div>
 
     <script>
-        window.onload = function() {
+        // Display the cookie consent banner if not previously accepted
+        window.onload = function () {
             if (!localStorage.getItem('cookieConsent')) {
                 document.getElementById('cookie-consent').style.display = 'block';
             }
         }
 
+        // Function to handle cookie acceptance
         function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'true');
-            document.getElementById('cookie-consent').style.display = 'none';
+            try {
+                localStorage.setItem('cookieConsent', 'true');
+                document.getElementById('cookie-consent').style.display = 'none';
+            } catch (error) {
+                console.error('Error storing cookie consent:', error);
+                // Handle the error and provide user feedback if needed
+            }
         }
     </script>
 </body>
+
 </html>
